@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+
         printStartMessage();
         List<Integer> computerNumber = makeRandomNumber(1, 9, 3);
         playGame(computerNumber);
@@ -44,37 +45,48 @@ public class Application {
         String input = Console.readLine();
         List<Integer> userNumber = new ArrayList<>();
 
-        // number인지
-        for(int i = 0; i<input.length();++i){
-            if(!Character.isDigit(input.charAt(i))){
-                throw new IllegalStateException("it should be number");
-            }
-        }
+        isNumber(input);
+        notZeroInNumber(input);
+        isThreeDigits(input);
+        isNotDuplicated(input, userNumber);
 
-        // 0이 포함되어 있지 않은지
-        for(int i = 0; i<input.length();++i){
-            if(input.charAt(i)=='0'){
-                throw new IllegalStateException("0 cannot be digit");
-            }
-        }
+        return userNumber;
+    }
 
-        // 3자리인지
-        int num = Integer.parseInt(input);
-        if(111>num || num > 999){
-            throw new IllegalStateException("it should be number");
-        }
 
-        // 중복된 값이 없는지
-        for(int i = 0; i<input.length();++i){
+    public static void isNotDuplicated(String input, List<Integer> userNumber) {
+        for(int i = 0; i< input.length(); ++i){
             if(userNumber.contains(input.charAt(i)-'0')){
-                throw new IllegalStateException("it should not be duplicated");
+                throw new IllegalArgumentException("it should not be duplicated");
             }
             userNumber.add(input.charAt(i)-'0');
         }
-        return userNumber;
-
     }
-    private static List<Integer> compare(List<Integer> computer_number, List<Integer> user_number) {
+
+    public static void isThreeDigits(String input) {
+        int num = Integer.parseInt(input);
+        if(111>num || num > 999){
+            throw new IllegalArgumentException("it should be number");
+        }
+    }
+
+    public static void notZeroInNumber(String input) {
+        for(int i = 0; i< input.length(); ++i){
+            if(input.charAt(i)=='0'){
+                throw new IllegalArgumentException("0 cannot be digit");
+            }
+        }
+    }
+
+    public static void isNumber(String input) {
+        for(int i = 0; i< input.length(); ++i){
+            if(!Character.isDigit(input.charAt(i))){
+                throw new IllegalArgumentException("it should be number");
+            }
+        }
+    }
+
+    public static List<Integer> compare(List<Integer> computer_number, List<Integer> user_number) {
         int strike_cnt = 0;
         int ball_cnt = 0;
         for(int i = 0; i<computer_number.size();++i){
@@ -89,7 +101,7 @@ public class Application {
         return List.of(strike_cnt, ball_cnt);
     }
 
-    private static void printResult(List<Integer>result) {
+    public static void printResult(List<Integer>result) {
         int strike_cnt = result.get(0);
         int ball_cnt = result.get(1);
 
@@ -108,6 +120,7 @@ public class Application {
         if(strike_cnt == 3){
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
         }
+
     }
 
 
