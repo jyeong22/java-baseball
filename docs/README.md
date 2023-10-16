@@ -37,7 +37,7 @@
 ## HintCalculator (controller)
 사용자가 입력한 숫자와 컴퓨터 숫자를 비교하는 클래스
 
-## Correctness (controller)
+## Validator (controller)
 입력받은 문자열이 올바른 값인지 확인하는 클래스
 
 ## GameController (controller)
