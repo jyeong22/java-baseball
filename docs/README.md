@@ -23,3 +23,22 @@
          2. 2를 입력받은 경우
             - [ ] 종료
 
+### class별 기능 정리
+
+## InputView (view)
+사용자로부터 입력받는 클래스
+
+## OutputView (view)
+사용자에게 출력하는 클래스
+
+## ComputerNumber (model)
+랜덤으로 컴퓨터 숫자를 생성한 후 저장하는 클래스
+
+## HintCalculator (controller)
+사용자가 입력한 숫자와 컴퓨터 숫자를 비교하는 클래스
+
+## Correctness (controller)
+입력받은 문자열이 올바른 값인지 확인하는 클래스
+
+## GameController (controller)
+게임 전반적인 흐름을 관리하는 클래스
